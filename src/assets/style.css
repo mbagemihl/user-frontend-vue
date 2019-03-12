@@ -1,0 +1,10 @@
+div#content-left{
+    width: 60% !important;
+}
+div#content-right{
+    width: 40%;
+}
+
+div#app {
+    display: flex;
+}
