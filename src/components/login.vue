@@ -29,7 +29,7 @@
         <div class="input-container">
             <h3>Choose your avatar</h3>
             <label>
-                <input type="radio" class="nes-radio" name="avatar" v-model="data.avatar" value="nes-octocat animate"
+                <input type="radio" class="nes-radio" name="avatar" v-model="data.avatar" value="nes-octocat"
                        checked>
                 <span><i class="nes-octocat animate"></i></span>
             </label>
