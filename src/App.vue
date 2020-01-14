@@ -1,20 +1,19 @@
 <template>
     <div id="app" v-bind:style="{ display: 'flex'}">
-        <div id="content-left" v-bind:style="{ width: '50%'}">
-            <login gender="gender" name="name" adult="adult" avatar="avatar" v-on:save="setData($event)"/>
+        <div class="content-left" v-bind:style="{ width: '50%'}">
+            <login gender="gender" name="name" adult="adult" avatar="avatar" v-on:save="setData"/>
         </div>
-        <div id="content-right" v-bind:style="{ width: '50%'}">
-            <list v-bind:users="store" v-on:delete="deleteUser($event)"></list>
+        <div class="content-right" v-bind:style="{ width: '50%'}">
+            <list v-bind:users="store" v-on:delete="deleteUser"></list>
         </div>
     </div>
 
 </template>
 
 <script>
-    /* eslint-disable no-console */
-    import login from './components/login.vue'
-    import axios from 'axios'
-    import List from "./components/list";
+    import List from '@/components/list';
+    import login from '@/components/login';
+    import userService from '@/services/User'
 
     export default {
         name: 'app',
@@ -22,7 +21,6 @@
             List,
             login
         },
-        props: ['data'],
         data () {
             return {
                 store: [],
@@ -32,32 +30,39 @@
                 avatar: ""
             }
         },
-        created: function() {
-            axios.get("http://127.0.0.1:8888/users").then(response => {
-                this.store = response.data;
-            });
-        },
         methods: {
-            setData(value) {
-                axios.post("http://127.0.0.1:8888/users", {
-                    name: value.name || 'unknown',
-                    gender: value.gender === undefined ? 'NONE' : value.gender.toUpperCase(),
-                    avatar: value.avatar === undefined ? 'MARIO' : value.avatar.replace('nes-', '').toUpperCase(),
-                    adult: value.adult
-                }).then(response => {
-                    this.store = response.data;
-                });
+            async setData (user) {
+                await userService.create(user)
+                this.fetchUsers()
 
             },
-            deleteUser(id) {
-                axios.delete("http://127.0.0.1:8888/users/" + id).then( response => {
-                    this.store = response.data;
-                })
+            async deleteUser (id) {
+                await userService.delete(id)
+                this.fetchUsers()
+            },
+            async fetchUsers () {
+                const users = await userService.fetchAll()
+                this.store = users
             }
         },
-        mounted() {
-            this.store = axios.get("http://127.0.0.1:8888/users")
+        created() {
+            this.fetchUsers()
         }
-
     }
 </script>
+
+<style lang="scss">
+#app {
+    display: flex;
+
+    .content {
+        &-left{
+            width: 60%;
+        }
+
+        &-right{
+            width: 40%;
+        }
+    }
+}
+</style>
