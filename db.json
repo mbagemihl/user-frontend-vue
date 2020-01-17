@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "Marcel",
+      "gender": "MALE",
+      "avatar": "OCTOCAT",
+      "adult": true,
+      "id": 1
+    },
+    {
+      "name": "Jose",
+      "gender": "NONE",
+      "avatar": "MARIO",
+      "adult": true,
+      "id": 2
+    }
+  ]
+}
