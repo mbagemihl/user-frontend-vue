@@ -1,7 +1,10 @@
 <template>
-    <ul id="userlist" v-if="users.length>0">
+    <ul id="userlist">
         <li v-for="user of users" v-bind:key="user.id">
-            <i :class="'nes-' + toAvatar(user.avatar)"></i>
+            <i :class="[
+                'nes-' + user.avatar.toLowerCase(),
+                { animate: isAnimated(user) }
+            ]"></i>
             <span>{{ user.name + " " + user.gender + " " + (user.adult ? "adult" : "child")}}</span>
             <button v-on:click="$emit('delete', user.id )" type="button" class="nes-btn is-error">Delete</button>
         </li>
@@ -9,6 +12,8 @@
 </template>
 
 <script>
+    const ANIMATED_ICONS = ['OCTOCAT']
+
     export default {
         name: "list",
         props: ['users'],
@@ -18,16 +23,9 @@
               console.log(newValue, oldValue);
           }
         },
-        data() {
-            return {
-                userAvatar: ""
-            }
-        },
         methods: {
-            toAvatar(avatar) {
-
-                let response = avatar === 'OCTOCAT' ? avatar + " animate" : avatar;
-                return response.toLowerCase();
+            isAnimated (user) {
+                return ANIMATED_ICONS.includes(user.avatar)
             }
         }
     }
