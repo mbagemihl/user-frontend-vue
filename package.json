@@ -9,7 +9,7 @@
     "mock-server": "json-server --watch db.json --port 8888"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "nes.css": "^1.0.0",
     "vue": "^2.5.21"
   },
