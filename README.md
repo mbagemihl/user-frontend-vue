@@ -1,4 +1,4 @@
-# bar
+# User Frontend
 
 ## Project setup
 ```
