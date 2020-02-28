@@ -9,8 +9,8 @@
     },
     {
       "name": "Jose",
-      "gender": "NONE",
-      "avatar": "MARIO",
+      "gender": "MALE",
+      "avatar": "KIRBY",
       "adult": true,
       "id": 2
     }

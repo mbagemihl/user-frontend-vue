@@ -6,7 +6,7 @@
                 { animate: isAnimated(user) }
             ]"></i>
             <span>{{ user.name + " " + user.gender + " " + (user.adult ? "adult" : "child")}}</span>
-            <button v-on:click="$emit('delete', user.id )" type="button" class="nes-btn is-error">Delete</button>
+            <button v-on:click="$emit('delete', user.id )" :id="'delete-' + user.id" type="button" class="nes-btn is-error">Delete</button>
         </li>
     </ul>
 </template>
