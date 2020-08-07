@@ -5,6 +5,13 @@
 npm install
 ```
 
+### Cypress e2e Tests
+```
+npm run serve
+npm run mock-server
+npx cypress open
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
